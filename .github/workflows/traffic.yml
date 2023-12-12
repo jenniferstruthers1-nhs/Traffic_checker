@@ -23,7 +23,21 @@ jobs:
       env:
         TRAFFIC_ACTION_TOKEN: ${{ secrets.TRAFFIC_ACTION_TOKEN }} 
         REPOSITORY_NAME: "NHSDigital/rap-community-of-practice"
-     
+
+    # Run my python script to generate html graphs
+    - name: Generate Traffic Graphs
+      run: python app.py #if this was in another folder "python /myfolder/app.py"
+      working-directory: $GITHUB_WORKSPACE  # Set the working directory to the root of your repository
+
+    # Commit the generated graphs to the ./images/ folder
+    - name: Commit image changes
+      uses: EndBug/add-and-commit@v4
+      with:
+        author_name: Jennifer Struthers
+        message: "updated traffic graphs"
+        add: "./images/*"
+        ref: "traffic"  # commits to branch "traffic" 
+  
     # Commits files to repository
     - name: Commit changes
       uses: EndBug/add-and-commit@v4
