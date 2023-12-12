@@ -45,7 +45,7 @@ jobs:
       uses: EndBug/add-and-commit@v4
       with:
         author_name: Jennifer Struthers
-        message: "updated traffic graphs"
+        message: "update traffic graphs"
         add: "./images/*"
         ref: "traffic"  # commits to branch "traffic" 
   
