@@ -67,7 +67,7 @@ def update_avg_views_chart(relayoutData):
     fig = px.bar(avg_views_by_day, x=avg_views_by_day.index, y='Total Views',
                  labels={'Total Views': 'Average Views', 'index': 'Day of the Week'},
                  title='Average Views by Day of the Week',
-                 color_discrete_sequence=['#005EB8'])
+                 color_discrete_sequence=['#FFC0CB'])
 
     # Update x-axis label, remove background
     fig.update_layout(xaxis_title='Day of the Week', plot_bgcolor='rgba(0,0,0,0)')
