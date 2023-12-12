@@ -46,6 +46,8 @@ def update_chart(relayoutData):
     fig.update_layout(legend=dict(title_text='Key'),
                       plot_bgcolor='rgba(0,0,0,0)')
 
+    fig.write_html("images/views_by_date.html")
+
     return fig
 
 # Callback to update the bar chart
@@ -70,6 +72,8 @@ def update_avg_views_chart(relayoutData):
 
     # Update x-axis label, remove background
     fig.update_layout(xaxis_title='Day of the Week', plot_bgcolor='rgba(0,0,0,0)')
+
+    fig.write_html("images/views_by_day_average.html")
 
     return fig
 
