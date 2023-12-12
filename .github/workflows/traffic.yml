@@ -28,7 +28,10 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install dash pandas plotly
-
+      # Create the 'images' directory
+    - name: Create Images Directory
+      run: mkdir -p images
+      working-directory: ${{ github.workspace }}
     # Run my python script to generate html graphs
     - name: Generate Traffic Graphs
       run: python app.py #if this was in another folder "python /myfolder/app.py"
