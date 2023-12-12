@@ -3,6 +3,7 @@ from dash import dcc, html
 from dash.dependencies import Input, Output
 import pandas as pd
 import plotly.express as px
+import plotly.offline as pyo
 
 # Load CSV data
 df = pd.read_csv('traffic/views.csv')
@@ -46,8 +47,6 @@ def update_chart(relayoutData):
     fig.update_layout(legend=dict(title_text='Key'),
                       plot_bgcolor='rgba(0,0,0,0)')
 
-    fig.write_html("images/views_by_date.html")
-
     return fig
 
 # Callback to update the bar chart
@@ -73,10 +72,12 @@ def update_avg_views_chart(relayoutData):
     # Update x-axis label, remove background
     fig.update_layout(xaxis_title='Day of the Week', plot_bgcolor='rgba(0,0,0,0)')
 
-    fig.write_html("images/views_by_day_average.html")
-
     return fig
 
-# Run the app
-if __name__ == '__main__':
-    app.run_server(debug=True)
+# Generate figures
+views_line_chart = update_chart(None)
+avg_views_by_day_bar_chart = update_avg_views_chart(None)
+
+# Save HTML files
+pyo.plot(views_line_chart, filename="images/views_by_date.html", auto_open=False)
+pyo.plot(avg_views_by_day_bar_chart, filename="images/views_by_day_average.html", auto_open=False)
