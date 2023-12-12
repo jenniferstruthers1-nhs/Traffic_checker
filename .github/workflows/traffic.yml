@@ -27,7 +27,7 @@ jobs:
     # Run my python script to generate html graphs
     - name: Generate Traffic Graphs
       run: python app.py #if this was in another folder "python /myfolder/app.py"
-      working-directory: $GITHUB_WORKSPACE  # Set the working directory to the root of your repository
+      working-directory: ${{ github.workspace }}  # Set the working directory to the root of your repository
 
     # Commit the generated graphs to the ./images/ folder
     - name: Commit image changes
