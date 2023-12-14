@@ -1,7 +1,7 @@
 on:
   schedule: 
-    # runs once a week on sunday
-    - cron: "55 23 * * 0"
+    # runs each day at 23:55
+    - cron: "55 23 * * *"
   workflow_dispatch:
     
 jobs:
