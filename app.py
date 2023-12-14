@@ -94,5 +94,5 @@ pyo.plot(avg_views_by_day_bar_chart, filename="images/views_by_day_average.html"
 
 # Run the app 
 #if this is here the github action won't work
-if __name__ == '__main__':
-    app.run_server(debug=True)
+#if __name__ == '__main__':
+#    app.run_server(debug=True)
