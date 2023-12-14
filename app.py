@@ -33,19 +33,24 @@ app.layout = html.Div([
 )
 def update_chart(relayoutData):
     fig = px.line(df, x='Date', y=['Total Views', 'Unique Views'],
-                  labels={'value': 'Count', 'Date': 'Date'},  # Updated x-axis label
+                  labels={'value': 'Views', 'Date': 'Date'},
                   title='Views Over Time',
-                  line_shape='linear')  # Ensure a linear shape for the line
+                  line_shape='spline') 
 
     # Fill the area under the 'Total Views' line with NHS blue
-    fig.update_traces(fill='tozeroy', fillcolor='#005EB8', line=dict(color='#005EB8'), selector=dict(name='Total Views'))
+    fig.update_traces(fill='tozeroy', fillcolor='rgba(0,94,184,0.65)',  # Adjust the opacity (0.5 for example)
+                      line=dict(color='#005EB8', width=2),  # Customize line color and width
+                      selector=dict(name='Total Views'))
 
     # Fill the area under the 'Unique Views' line with NHS dark blue
-    fig.update_traces(fill='tozeroy', fillcolor='#003087', line=dict(color='#003087'), selector=dict(name='Unique Views'))
+    fig.update_traces(fill='tozeroy', fillcolor='rgba(0,48,135,0.65)',  # Adjust the opacity (0.5 for example)
+                      line=dict(color='#003087', width=2),  # Customize line color and width
+                      selector=dict(name='Unique Views'))
 
     # Customize legend
-    fig.update_layout(legend=dict(title_text='Key'),
-                      plot_bgcolor='rgba(0,0,0,0)')
+    fig.update_layout(font=dict(family='Arial', size=12, color='black'),
+                      legend=dict(x=0, y=1, traceorder='normal', orientation='v', title_text=''),
+                      plot_bgcolor='rgba(0,0,0,0)', xaxis_title='')
 
     return fig
 
@@ -67,10 +72,13 @@ def update_avg_views_chart(relayoutData):
     fig = px.bar(avg_views_by_day, x=avg_views_by_day.index, y='Total Views',
                  labels={'Total Views': 'Average Views', 'index': 'Day of the Week'},
                  title='Average Views by Day of the Week',
-                 color_discrete_sequence=['#003087'])
+                 color_discrete_sequence=['#005EB8'])
 
-    # Update x-axis label, remove background
-    fig.update_layout(xaxis_title='Day of the Week', plot_bgcolor='rgba(0,0,0,0)')
+    # Update x-axis label, remove background, etc
+    fig.update_layout(font=dict(family='Arial', size=12, color='black'),
+                      xaxis_title='', plot_bgcolor='rgba(0,0,0,0)',
+                      xaxis=dict(tickfont=dict(size=16)),
+                      bargap=0.01, bargroupgap=0.1)
 
     return fig
 
