@@ -89,7 +89,3 @@ avg_views_by_day_bar_chart = update_avg_views_chart(None)
 # Save HTML files
 pyo.plot(views_line_chart, filename="images/views_by_date.html", auto_open=False)
 pyo.plot(avg_views_by_day_bar_chart, filename="images/views_by_day_average.html", auto_open=False)
-
-# Run the app
-if __name__ == '__main__':
-    app.run_server(debug=True)
