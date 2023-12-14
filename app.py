@@ -50,7 +50,8 @@ def update_chart(relayoutData):
     # Customize legend
     fig.update_layout(font=dict(family='Arial', size=12, color='black'),
                       legend=dict(x=0, y=1, traceorder='normal', orientation='v', title_text=''),
-                      plot_bgcolor='rgba(0,0,0,0)', xaxis_title='')
+                      plot_bgcolor='rgba(0,0,0,0)', xaxis_title='', yaxis_title='', title='',
+                      margin=dict(l=0, r=0, t=0, b=0))
 
     return fig
 
@@ -76,9 +77,10 @@ def update_avg_views_chart(relayoutData):
 
     # Update x-axis label, remove background, etc
     fig.update_layout(font=dict(family='Arial', size=12, color='black'),
-                      xaxis_title='', plot_bgcolor='rgba(0,0,0,0)',
-                      xaxis=dict(tickfont=dict(size=16)),
-                      bargap=0.01, bargroupgap=0.1)
+                      xaxis_title='', yaxis_title='', plot_bgcolor='rgba(0,0,0,0)',
+                      xaxis=dict(tickfont=dict(size=14)),
+                      bargap=0.01, bargroupgap=0.1, title='',
+                      margin=dict(l=0, r=0, t=0, b=0) )
 
     return fig
 
@@ -89,3 +91,8 @@ avg_views_by_day_bar_chart = update_avg_views_chart(None)
 # Save HTML files
 pyo.plot(views_line_chart, filename="images/views_by_date.html", auto_open=False)
 pyo.plot(avg_views_by_day_bar_chart, filename="images/views_by_day_average.html", auto_open=False)
+
+# Run the app 
+#if this is here the github action won't work
+if __name__ == '__main__':
+    app.run_server(debug=True)
