@@ -8,6 +8,14 @@ import plotly.offline as pyo
 # Load CSV data
 df = pd.read_csv('traffic/views.csv')
 df['Date'] = pd.to_datetime(df['_date'])
+
+start_date = min(df['Date'])
+end_date = max(df['Date'])
+date_range = pd.date_range(start=start_date, end=end_date)
+date_df = pd.DataFrame({'Date': date_range})
+df = pd.merge(date_df, df, on='Date', how='left').fillna(0)
+
+
 df['Total Views'] = pd.to_numeric(df['total_views'])  # Ensure 'Total Views' is numeric
 df['Unique Views'] = pd.to_numeric(df['unique_views'])  # Ensure 'Unique Views' is numeric
 
@@ -89,10 +97,10 @@ views_line_chart = update_chart(None)
 avg_views_by_day_bar_chart = update_avg_views_chart(None)
 
 # Save HTML files
-pyo.plot(views_line_chart, filename="images/views_by_date.html", auto_open=False)
-pyo.plot(avg_views_by_day_bar_chart, filename="images/views_by_day_average.html", auto_open=False)
+#pyo.plot(views_line_chart, filename="images/views_by_date.html", auto_open=False)
+#pyo.plot(avg_views_by_day_bar_chart, filename="images/views_by_day_average.html", auto_open=False)
 
 # Run the app 
 #if this is here the github action won't work
-#if __name__ == '__main__':
-#    app.run_server(debug=True)
+if __name__ == '__main__':
+    app.run_server(debug=True)
